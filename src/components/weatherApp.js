@@ -6,7 +6,7 @@ export default function WeatherApp(){
 
     async function loadInfo(city = "Buenos Aires"){
         try {
-            const request = await fetch()
+            const request = await fetch(`${process.env.REACT_APP_URL}&key=${process.env.REACT_APP_KEY}`)
         } catch () {
             
         }
@@ -21,4 +21,4 @@ export default function WeatherApp(){
         <WeatherForm onChangeCity={handleChangeCity}/>
         <div>Info</div>
     </div>
-}
+}          
