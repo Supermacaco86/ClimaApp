@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react"
 import WeatherForm from "./weatherForm";
 import WeatherMainInfo from "./weatherMainInfo";
+import styles from "./weatherApp.module.css"
 
 export default function WeatherApp(){
     const [weather, setWeather] = useState(null);
@@ -13,7 +14,7 @@ export default function WeatherApp(){
         document.title = `Weather | ${weather?.location.name ?? ""} `
     }, [weather])
 
-    async function loadInfo(city = 'London'){
+    async function loadInfo(city = 'Calgary'){
         try {
             const request = await fetch(`${process.env.REACT_APP_URL}&key=${process.env.REACT_APP_KEY}&q=${city}`)
             const json = await request.json()
@@ -29,8 +30,10 @@ export default function WeatherApp(){
         loadInfo(city)
     }
 
-    return <div>
+    return(
+    <div className={styles.weatherContainer}>
         <WeatherForm onChangeCity={handleChangeCity}/>
         <WeatherMainInfo weather={weather}/>
     </div>
+    )
 }          
